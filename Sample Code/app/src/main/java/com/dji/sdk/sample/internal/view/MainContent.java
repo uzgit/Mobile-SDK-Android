@@ -139,6 +139,13 @@ public class MainContent extends RelativeLayout {
         }
         DJISampleApplication.getEventBus().register(this);
         initUI();
+
+        try{
+            checkAndRequestPermissions();
+        }catch (Exception e)
+        {
+
+        }
     }
 
     private void initUI() {
@@ -373,6 +380,8 @@ public class MainContent extends RelativeLayout {
                     mTextModelAvailable.setText("Firmware version:N/A");
                 }
             }
+            // automatically open if we can
+            DJISampleApplication.getEventBus().post(componentList);
         } else {
             mBtnOpen.setEnabled(false);
             mTextProduct.setText(R.string.product_information);
